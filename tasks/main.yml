@@ -13,9 +13,9 @@
 - name: ensure torrent folders exist
   file: path={{item}} state=directory
   with_items:
-   - "{{ directory_watch }}"
-   - "{{ directory_session }}"
-   - "{{ directory_download }}"
+   - "{{ rtorrent_directory_watch }}"
+   - "{{ rtorrent_directory_session }}"
+   - "{{ rtorrent_directory_download }}"
 
 - name: copy the rtorrent configuration file
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc

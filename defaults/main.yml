@@ -4,40 +4,40 @@
 # -------------
 # bandwidth settings
 # -------------
-min_peers: 40
-max_peers: 100
-min_peers_seed: 10
-max_peers_seed: 50
-max_uploads: 15
-download_rate: 0
-upload_rate: 0
+rtorrent_min_peers: 40
+rtorrent_max_peers: 100
+rtorrent_min_peers_seed: 10
+rtorrent_max_peers_seed: 50
+rtorrent_max_uploads: 15
+rtorrent_download_rate: 0
+rtorrent_upload_rate: 0
 # -------------
 # network settings
 # -------------
-port_range: 49164-49164
-port_random: "no"
+rtorrent_port_range: 49164-49164
+rtorrent_port_random: "no"
 # -------------
 # torrent settings
 # -------------
-check_hash: "no"
-use_udp_trackers: "yes"
-encryption: allow_incoming,enable_retry,prefer_plaintext
-dht: auto
-dht_port: 6881
-peer_exchange: "yes"
+rtorrent_check_hash: "no"
+rtorrent_use_udp_trackers: "yes"
+rtorrent_encryption: allow_incoming,enable_retry,prefer_plaintext
+rtorrent_dht: auto
+rtorrent_dht_port: 6881
+rtorrent_peer_exchange: "yes"
 # -------------
 # directory settings
 # -------------
-directory_download: ~/rtorrent/download
-directory_session: ~/rtorrent/.session
-directory_watch: ~/rtorrent/watch
+rtorrent_directory_download: ~/rtorrent/download
+rtorrent_directory_session: ~/rtorrent/.session
+rtorrent_directory_watch: ~/rtorrent/watch
 # -------------
 # schedule settings
 # -------------
-schedule_watch_directory: watch_directory,5,5,load_start={{ directory_watch }}/*.torrent
-schedule_untied_directory: untied_directory,5,5,stop_untied=
+rtorrent_schedule_watch_directory: watch_directory,5,5,load_start={{ rtorrent_directory_watch }}/*.torrent
+rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
 # -------------
 # other settings (can break rtorrent when misconfigured)
 # -------------
-other_settings:
+rtorrent_other_settings:
     - scgi_port = 127.0.0.1:5000 
