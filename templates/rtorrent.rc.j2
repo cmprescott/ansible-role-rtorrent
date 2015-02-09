@@ -29,24 +29,8 @@ session = {{ directory_session }}
  
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = {{ schedule_watch_directory }}{{ directory_watch }}/*.torrent
+schedule = {{ schedule_watch_directory }}
 schedule = {{ schedule_untied_directory }}
- 
-# Close torrents when diskspace is low.
-schedule = {{ schedule_low_diskspace }}
- 
-# Stop torrents when reaching upload ratio in percent,
-# when also reaching total upload in bytes, or when
-# reaching final upload ratio in percent.
-# example: stop at ratio 2.0 with at least 200 MB uploaded, or else ratio 20.0
-schedule = {{ schedule_ratio }}
- 
-# The ip address reported to the tracker.
-ip = {{ ip }}
- 
-# The ip address the listening socket and outgoing connections is
-# bound to.
-bind = {{ bind }} 
  
 # Port range to use for listening.
 port_range = {{ port_range }}
@@ -60,10 +44,6 @@ check_hash = {{ check_hash }}
  
 # Set whetever the client should try to connect to UDP trackers.
 use_udp_trackers = {{ use_udp_trackers }}
- 
-# Alternative calls to bind and ip that should handle dynamic ip's.
-schedule = {{ schedule_ip_tick }}
-schedule = {{ schedule_bind_tick }}
  
 # Encryption options, set to none (default) or any combination of the following:
 # allow_incoming, try_outgoing, require, require_RC4, enable_retry, prefer_plaintext
@@ -107,4 +87,6 @@ peer_exchange = {{ peer_exchange }}
 # decent hash checking rate.
 #hash_max_tries = 10
  
-scgi_port = {{ scgi_port }}
+{% for v in other_settings %}
+        {{ v }};
+{% endfor %}

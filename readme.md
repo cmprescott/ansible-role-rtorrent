@@ -27,13 +27,8 @@ upload_rate: 0
 # -------------
 # network settings
 # -------------
-ip_num: 127.0.0.1
-ip_dns: rakshasa.no
-bind_num: 127.0.0.1
-bind_dns: rakshasa.no
 port_range: 49164-49164
 port_random: "no"
-scgi_port: 127.0.0.1:5000 
 # -------------
 # torrent settings
 # -------------
@@ -52,12 +47,10 @@ directory_watch: ~/rtorrent/watch
 # -------------
 # schedule settings
 # -------------
-schedule_watch_directory: watch_directory,5,5,load_start=
+schedule_watch_directory: watch_directory,5,5,load_start={{ directory_watch }}/*.torrent
 schedule_untied_directory: untied_directory,5,5,stop_untied=
-schedule_low_diskspace: low_diskspace,5,60,close_low_diskspace=100M
-schedule_ratio: ratio,60,60,"stop_on_ratio=200,200M,2000"
-schedule_ip_tick: ip_tick,0,1800,ip=rakshasa
-schedule_bind_tick: bind_tick,0,1800,bind=rakshasa
+other_settings:
+    - scgi_port = 127.0.0.1:5000 
 ```
 
 Examples
