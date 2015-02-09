@@ -1,0 +1,21 @@
+---
+# file: roles/rtorrent/tasks/main.yml
+
+# -------------
+# Install and configure RTorrent
+# -------------
+- name: ensure rTorrent installed
+  sudo: Yes
+  apt: name={{item}} state=present update_cache=no
+  with_items:
+   - rtorrent
+
+- name: ensure torrent folders exist
+  file: path={{item}} state=directory
+  with_items:
+   - "{{ directory_watch }}"
+   - "{{ directory_session }}"
+   - "{{ directory_download }}"
+
+- name: copy the rtorrent configuration file
+  template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
