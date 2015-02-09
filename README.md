@@ -6,7 +6,7 @@ This role installs and configures rtorrent. The user can specify any rtorrent co
 Requirements
 ------------
 
-This role requires Ansible 1.4 or higher and Ubuntu.
+This role requires Ansible 1.2 or higher and Ubuntu.
 
 Role Variables
 --------------
@@ -56,9 +56,13 @@ rtorrent_other_settings:
     - scgi_port = 127.0.0.1:5000 
 ```
 
-Examples
-========
+Dependencies
+------------
 
+None
+
+Example Playbook
+-------------------------
 1) Install rtorrent with default settings
 
     - hosts: all
@@ -73,12 +77,6 @@ Examples
       - role: rtorrent
         min_peers: 0
         max_peers: 1000
-
-
-Dependencies
-------------
-
-None
 
 License
 -------
