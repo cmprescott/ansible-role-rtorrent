@@ -1,5 +1,5 @@
 ---
-# file: roles/rtorrent/deafults/main.yml
+# file: roles/rtorrent/defaults/main.yml
 
 # -------------
 # bandwidth settings
@@ -40,4 +40,4 @@ rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
 # other settings (can break rtorrent when misconfigured)
 # -------------
 rtorrent_other_settings:
-    - scgi_port = 127.0.0.1:5000 
+#    - scgi_port = 127.0.0.1:5000 
