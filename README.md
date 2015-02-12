@@ -52,8 +52,9 @@ rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
 # -------------
 # other settings (can break rtorrent when misconfigured)
 # -------------
-rtorrent_other_settings:
-    - scgi_port = 127.0.0.1:5000 
+rtorrent_other_settings: []
+# Example
+#    - scgi_port = 127.0.0.1:5000 
 ```
 
 Dependencies
