@@ -17,5 +17,5 @@
    - "{{ rtorrent_directory_session }}"
    - "{{ rtorrent_directory_download }}"
 
-- name: copy the rtorrent configuration file
+- name: ensure the rtorrent configuration file has user settings
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
