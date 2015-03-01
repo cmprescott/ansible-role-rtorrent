@@ -76,8 +76,8 @@ Example Playbook
     - hosts: all
       roles:
       - role: rtorrent
-        min_peers: 0
-        max_peers: 1000
+        rtorrent_min_peers: 0
+        rtorrent_max_peers: 1000
 
 License
 -------
