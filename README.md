@@ -1,4 +1,4 @@
-rtorrent
+Ansible Role: rTorrent
 =====
 [![Build Status](https://travis-ci.org/cmprescott/ansible-role-rtorrent.svg?branch=master)](https://travis-ci.org/cmprescott/ansible-role-rtorrent)
 
@@ -7,14 +7,12 @@ This role installs and configures rtorrent. The user can specify any rtorrent co
 Requirements
 ------------
 
-This role requires Ansible 1.2 or higher and Ubuntu.
+**TODO**: List supported OS, increase OS support
 
 Role Variables
 --------------
 
-The variables that can be passed to this role and a brief description about them are as follows.
-
-```
+```yaml
 # -------------
 # bandwidth settings
 # -------------
@@ -65,20 +63,24 @@ None
 
 Example Playbook
 -------------------------
+
 1) Install rtorrent with default settings
 
-    - hosts: all
-      roles:
-      - role: rtorrent
-
+```yaml
+- hosts: all
+  roles:
+    - role: rtorrent
+```
 
 2) Install rtorrent with custom settings
 
-    - hosts: all
-      roles:
-      - role: rtorrent
-        rtorrent_min_peers: 0
-        rtorrent_max_peers: 1000
+```yaml
+- hosts: all
+  roles:
+    - role: rtorrent
+      rtorrent_min_peers: 0
+      rtorrent_max_peers: 1000
+```
 
 License
 -------
