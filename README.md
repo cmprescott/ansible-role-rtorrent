@@ -56,7 +56,7 @@ None
 Example Playbook
 -------------------------
 
-1) Install rtorrent with default settings
+1) Install rTorrent with default settings
 
 ```yaml
 - hosts: all
@@ -64,7 +64,7 @@ Example Playbook
     - role: rtorrent
 ```
 
-2) Install rtorrent with custom settings
+2) Install rTorrent with custom settings
 
 ```yaml
 - hosts: all
