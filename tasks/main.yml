@@ -2,6 +2,14 @@
 # file: roles/rtorrent/tasks/main.yml
 
 # -------------
+# Check for supported OS
+# -------------
+- name: All    | ensure remote os supported
+  fail: Unsupported OS. This role is intended for Debian and RedHat based OSs
+  when: "'{{ ansible_os_family }}' not in ['Debian', 'RedHat']"
+
+
+# -------------
 # Install rTorrent
 # -------------
 - name: "Debian | ensure rTorrent present"
@@ -9,10 +17,12 @@
   apt: name=rtorrent state=present update_cache=no
   when: ansible_os_family == 'Debian'
 
+
 - name: "RedHat | ensure rTorrent present"
   sudo: Yes
   yum: name=rtorrent state=present
   when: ansible_os_family == 'RedHat'
+
 
 # -------------
 # Configure rTorrent
@@ -24,5 +34,7 @@
    - "{{ rtorrent_directory_session }}"
    - "{{ rtorrent_directory_download }}"
 
+
 - name: All    | ensure the rtorrent configuration file has user settings
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
+
