@@ -13,9 +13,7 @@ Role Variables
 --------------
 
 ```yaml
-# -------------
-# bandwidth settings
-# -------------
+# ----- bandwidth settings -----
 rtorrent_min_peers: 40
 rtorrent_max_peers: 100
 rtorrent_min_peers_seed: 10
@@ -23,34 +21,25 @@ rtorrent_max_peers_seed: 50
 rtorrent_max_uploads: 15
 rtorrent_download_rate: 0
 rtorrent_upload_rate: 0
-# -------------
-# network settings
-# -------------
+# ----- directory settings -----
+rtorrent_directory_download: ~/rtorrent/download
+rtorrent_directory_session: ~/rtorrent/.session
+rtorrent_directory_watch: ~/rtorrent/watch
+# ----- network settings -----
 rtorrent_port_range: 49164-49164
 rtorrent_port_random: "no"
-# -------------
-# torrent settings
-# -------------
+# ----- schedule settings -----
+rtorrent_schedule_watch_directory: watch_directory,5,5,load_start={{ rtorrent_directory_watch }}/*.torrent
+rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
+# ----- torrent settings -----
 rtorrent_check_hash: "no"
 rtorrent_use_udp_trackers: "yes"
 rtorrent_encryption: allow_incoming,enable_retry,prefer_plaintext
 rtorrent_dht: auto
 rtorrent_dht_port: 6881
 rtorrent_peer_exchange: "yes"
-# -------------
-# directory settings
-# -------------
-rtorrent_directory_download: ~/rtorrent/download
-rtorrent_directory_session: ~/rtorrent/.session
-rtorrent_directory_watch: ~/rtorrent/watch
-# -------------
-# schedule settings
-# -------------
-rtorrent_schedule_watch_directory: watch_directory,5,5,load_start={{ rtorrent_directory_watch }}/*.torrent
-rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
-# -------------
-# other settings (can break rtorrent when misconfigured)
-# -------------
+# ----- other settings -----
+#  (can break rtorrent when misconfigured)
 rtorrent_other_settings: []
 # Example
 #    - scgi_port = 127.0.0.1:5000 
@@ -90,5 +79,5 @@ BSD
 Author Information
 ------------------
 
-- Original : Prescott Chris
+Prescott Chris
 
