@@ -2,20 +2,23 @@
 # file: roles/rtorrent/tasks/main.yml
 
 # -------------
-# Install and configure RTorrent
+# Install rTorrent
 # -------------
-- name: ensure rTorrent installed
+- name: Debian | ensure rTorrent installed
   sudo: Yes
   apt: name={{item}} state=present update_cache=no
   with_items:
    - rtorrent
 
-- name: ensure torrent folders exist
+# -------------
+# Configure rTorrent
+# -------------
+- name: All    | ensure torrent folders exist
   file: path={{item}} state=directory
   with_items:
    - "{{ rtorrent_directory_watch }}"
    - "{{ rtorrent_directory_session }}"
    - "{{ rtorrent_directory_download }}"
 
-- name: ensure the rtorrent configuration file has user settings
+- name: All    | ensure the rtorrent configuration file has user settings
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
