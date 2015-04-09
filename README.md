@@ -24,23 +24,28 @@ rtorrent_max_peers_seed: 50
 rtorrent_max_uploads: 15
 rtorrent_download_rate: 0
 rtorrent_upload_rate: 0
+
 # ----- directory settings -----
 rtorrent_directory_download: ~/rtorrent/download
 rtorrent_directory_session: ~/rtorrent/.session
 rtorrent_directory_watch: ~/rtorrent/watch
+
 # ----- network settings -----
 rtorrent_port_range: 49164-49164
 rtorrent_port_random: "no"
+
 # ----- schedule settings -----
 rtorrent_schedule_watch_directory: watch_directory,5,5,load_start={{ rtorrent_directory_watch }}/*.torrent
 rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
+
 # ----- torrent settings -----
 rtorrent_check_hash: "no"
 rtorrent_use_udp_trackers: "yes"
 rtorrent_encryption: allow_incoming,enable_retry,prefer_plaintext
-rtorrent_dht: auto
+rtorrent_dht: off
 rtorrent_dht_port: 6881
 rtorrent_peer_exchange: "yes"
+
 # ----- other settings -----
 #  (can break rtorrent when misconfigured)
 rtorrent_other_settings: []
@@ -56,7 +61,7 @@ None
 Example Playbook
 -------------------------
 
-1) Install rtorrent with default settings
+1) Install rTorrent with default settings
 
 ```yaml
 - hosts: all
@@ -64,7 +69,7 @@ Example Playbook
     - role: rtorrent
 ```
 
-2) Install rtorrent with custom settings
+2) Install rTorrent with custom settings
 
 ```yaml
 - hosts: all

@@ -1,5 +1,5 @@
 ---
-# file: roles/rtorrent/tasks/main.yml
+# tasks file for ansible-role-rtorrent
 
 # -------------
 # Check for supported OS
@@ -35,6 +35,6 @@
    - "{{ rtorrent_directory_download }}"
 
 
-- name: All    | ensure the rtorrent configuration file has user settings
+- name: All    | ensure ~/.rtorrent.rc configured
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
 
