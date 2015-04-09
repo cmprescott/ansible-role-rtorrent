@@ -4,11 +4,15 @@
 # -------------
 # Install rTorrent
 # -------------
-- name: Debian | ensure rTorrent installed
+- name: "Debian | ensure rTorrent present"
   sudo: Yes
-  apt: name={{item}} state=present update_cache=no
-  with_items:
-   - rtorrent
+  apt: name=rtorrent state=present update_cache=no
+  when: ansible_os_family == 'Debian'
+
+- name: "RedHat | ensure rTorrent present"
+  sudo: Yes
+  yum: name=rtorrent state=present
+  when: ansible_os_family == 'RedHat'
 
 # -------------
 # Configure rTorrent
