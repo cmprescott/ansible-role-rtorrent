@@ -1,5 +1,5 @@
 ---
-# file: roles/rtorrent/tasks/main.yml
+# tasks file for ansible-role-rtorrent
 
 # -------------
 # Check for supported OS

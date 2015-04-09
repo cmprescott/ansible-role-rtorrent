@@ -1,5 +1,5 @@
 ---
-# file: roles/rtorrent/defaults/main.yml
+# defaults file for ansible-role-rtorrent
 
 # -------------
 # bandwidth settings
