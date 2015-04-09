@@ -1,13 +1,13 @@
 ---
 galaxy_info:
   author: "Prescott Chris"
-  description: Installs and configures rtorrent for Ubuntu
+  description: Installs and configures rTorrent
   license: BSD
-  min_ansible_version: 1.2
+  min_ansible_version: 1.4.4
   platforms:
-  #- name: EL
-  #  versions:
-  #  - all
+  - name: EL
+    versions:
+    - all
   #  - 5
   #  - 6
   #  - 7
@@ -15,9 +15,9 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Fedora
-  #  versions:
-  #  - all
+  - name: Fedora
+    versions:
+    - all
   #  - 16
   #  - 17
   #  - 18
@@ -81,9 +81,9 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Debian
-  #  versions:
-  #  - all
+  - name: Debian
+    versions:
+    - all
   #  - etch
   #  - lenny
   #  - squeeze
