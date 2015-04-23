@@ -7,10 +7,7 @@ Ansible role to install and configures rtorrent.
 Requirements
 ------------
 
-System | Family | Distribution | Versions
--------|--------|--------------|---------:
-Linux | Debian | * | LTS+
-Linux | RedHat | * | LTS+
+Default package manager of **apt** or **yum**. 
 
 Role Variables
 --------------
