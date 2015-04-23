@@ -61,17 +61,17 @@ Example Playbook
 1) Install rTorrent with default settings
 
 ```yaml
-- hosts: all
+- hosts: servers-torrent
   roles:
-    - role: rtorrent
+    - role: cmprescott.rTorrent
 ```
 
 2) Install rTorrent with custom settings
 
 ```yaml
-- hosts: all
+- hosts: servers-torrent
   roles:
-    - role: rtorrent
+    - role: cmprescott.rTorrent
       rtorrent_min_peers: 0
       rtorrent_max_peers: 1000
 ```
