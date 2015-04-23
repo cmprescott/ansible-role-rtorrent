@@ -2,7 +2,7 @@ Ansible Role: rTorrent
 =====
 [![Build Status](https://travis-ci.org/cmprescott/ansible-role-rtorrent.svg?branch=master)](https://travis-ci.org/cmprescott/ansible-role-rtorrent)
 
-Ansible role to install and configures rtorrent.
+Ansible role to install and configure rTorrent.
 
 Requirements
 ------------
