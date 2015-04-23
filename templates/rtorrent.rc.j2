@@ -27,11 +27,6 @@ directory = {{ rtorrent_directory_download }}
 # relative path?
 session = {{ rtorrent_directory_session }} 
  
-# Watch a directory for new torrents, and stop those that have been
-# deleted.
-schedule = {{ rtorrent_schedule_watch_directory }}
-schedule = {{ rtorrent_schedule_untied_directory }}
- 
 # Port range to use for listening.
 port_range = {{ rtorrent_port_range }}
  
@@ -68,6 +63,17 @@ dht_port = {{ rtorrent_dht_port }}
 # Enable peer exchange (for torrents not marked private)
 #
 peer_exchange = {{ rtorrent_peer_exchange }}
+
+# Misc other settings
+#   EXAMPLE: 'scgi_port = 127.0.0.1:5000'
+{% for v in rtorrent_other_settings %}
+{{ v }};
+{% endfor %}
+
+# Watch a directory for new torrents, and stop those that have been
+# deleted.
+schedule = {{ rtorrent_schedule_watch_directory }}
+schedule = {{ rtorrent_schedule_untied_directory }}
  
 #
 # Do not modify the following parameters unless you know what you're doing.
@@ -87,6 +93,3 @@ peer_exchange = {{ rtorrent_peer_exchange }}
 # decent hash checking rate.
 #hash_max_tries = 10
  
-{% for v in rtorrent_other_settings %}
-{{ v }};
-{% endfor %}
