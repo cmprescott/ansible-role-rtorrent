@@ -4,30 +4,30 @@
 # -------------
 # Check for supported OS
 # -------------
-- name: All    | ensure remote os supported
-  fail: Unsupported OS. This role is intended for Debian and RedHat based OSs
-  when: "'{{ ansible_os_family }}' not in ['Debian', 'RedHat']"
+- name: all | ensure remote os supported
+  fail: "Unsupported pkg mgr. This role is depends on apt or yum."
+  when: ansible_pkg_mgr not in ['apt', 'yum']
 
 
 # -------------
 # Install rTorrent
 # -------------
-- name: "Debian | ensure rTorrent present"
+- name: "apt | ensure rTorrent present"
   sudo: Yes
   apt: name=rtorrent state=present update_cache=no
-  when: ansible_os_family == 'Debian'
+  when: ansible_pkg_mgr == 'apt'
 
 
-- name: "RedHat | ensure rTorrent present"
+- name: "yum | ensure rTorrent present"
   sudo: Yes
   yum: name=rtorrent state=present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_pkg_mgr == 'yum'
 
 
 # -------------
 # Configure rTorrent
 # -------------
-- name: All    | ensure torrent folders exist
+- name: all | ensure torrent folders exist
   file: path={{item}} state=directory
   with_items:
    - "{{ rtorrent_directory_watch }}"
@@ -35,6 +35,6 @@
    - "{{ rtorrent_directory_download }}"
 
 
-- name: All    | ensure ~/.rtorrent.rc configured
+- name: all | ensure ~/.rtorrent.rc configured
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
 
