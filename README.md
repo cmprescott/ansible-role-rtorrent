@@ -7,7 +7,7 @@ Ansible role to install and configure rTorrent.
 Requirements
 ------------
 
-Default package manager of **apt** or **yum**. 
+Default package manager of **apt**, **yum**, or **pkgng**. 
 
 Role Variables
 --------------
@@ -39,7 +39,7 @@ rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
 rtorrent_check_hash: "no"
 rtorrent_use_udp_trackers: "yes"
 rtorrent_encryption: allow_incoming,enable_retry,prefer_plaintext
-rtorrent_dht: off
+rtorrent_dht: "off"
 rtorrent_dht_port: 6881
 rtorrent_peer_exchange: "yes"
 

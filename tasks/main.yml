@@ -5,8 +5,8 @@
 # Check for supported OS
 # -------------
 - name: all | ensure remote os supported
-  fail: "Unsupported pkg mgr. This role is depends on apt or yum."
-  when: ansible_pkg_mgr not in ['apt', 'yum']
+  fail: "Unsupported pkg mgr. This role is depends on apt, yum, or pkgng."
+  when: ansible_pkg_mgr not in ['apt', 'yum', 'pkgng']
 
 
 # -------------
@@ -24,6 +24,12 @@
   when: ansible_pkg_mgr == 'yum'
 
 
+- name: "pkg | ensure rTorrent present"
+  sudo: Yes
+  pkgng: name=rtorrent state=present
+  when: ansible_pkg_mgr == 'pkgng'
+
+
 # -------------
 # Configure rTorrent
 # -------------
@@ -38,3 +44,5 @@
 - name: all | ensure ~/.rtorrent.rc configured
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
 
+
+...
