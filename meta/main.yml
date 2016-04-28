@@ -15,7 +15,6 @@ galaxy_info:
     versions:
     - 9.0
     - 9.1
-    - 9.1
     - 9.2
   - name: Ubuntu
     versions:
