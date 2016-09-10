@@ -1,6 +1,5 @@
+# ansible-role-rtorrent/tasks/main.yml
 ---
-# tasks file for ansible-role-rtorrent
-
 # -------------
 # Check for supported OS
 # -------------
@@ -8,27 +7,23 @@
   fail: msg="Unsupported pkg mgr. This role is depends on apt, yum, or pkgng."
   when: ansible_pkg_mgr not in ['apt', 'yum', 'pkgng']
 
-
 # -------------
 # Install rTorrent
 # -------------
 - name: "apt | ensure rTorrent present"
-  sudo: Yes
+  become: Yes
   apt: name=rtorrent state=present update_cache=no
   when: ansible_pkg_mgr == 'apt'
 
-
 - name: "yum | ensure rTorrent present"
-  sudo: Yes
+  become: Yes
   yum: name=rtorrent state=present
   when: ansible_pkg_mgr == 'yum'
 
-
 - name: "pkg | ensure rTorrent present"
-  sudo: Yes
+  become: Yes
   pkgng: name=rtorrent state=present
   when: ansible_pkg_mgr == 'pkgng'
-
 
 # -------------
 # Configure rTorrent
@@ -40,9 +35,6 @@
    - "{{ rtorrent_directory_session }}"
    - "{{ rtorrent_directory_download }}"
 
-
 - name: "all | ensure ~/.rtorrent.rc configured"
   template: src=rtorrent.rc.j2 dest=~/.rtorrent.rc
-
-
 ...

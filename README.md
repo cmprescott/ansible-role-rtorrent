@@ -7,7 +7,20 @@ Ansible role to install and configure rTorrent.
 Requirements
 ------------
 
-Default package manager of **apt**, **yum**, or **pkgng**. 
+```shell
+# Ansible version 2.0.0.2+
+ansible --version
+
+# OS
+case $OSTYPE in
+  # Linux needs apt|yum|dnf|zypper
+  "linux"*)
+      apt --version||yum --version;;
+  # OS X needs nothing
+  "freebsd"*)
+      pkgng --version;;
+esac
+```
 
 Role Variables
 --------------

@@ -3,7 +3,7 @@ galaxy_info:
   author: "Prescott Chris"
   description: Installs and configures rTorrent
   license: BSD
-  min_ansible_version: 1.4.4
+  min_ansible_version: 2.0.0.2
   platforms:
   - name: EL
     versions:
