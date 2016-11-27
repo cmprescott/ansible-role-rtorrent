@@ -16,7 +16,28 @@ rtorrent_numwant: -1
 # ----- directory settings -----
 rtorrent_directory_download: ~/rtorrent/download
 rtorrent_directory_session: ~/rtorrent/.session
+
+# directory_watch can be a directory path (like the default value), a dict or
+# a list of dicts for multiple watch directories.
+# Example for one watch directory:
+#   rtorrent_directory_watch:
+#     path: ~/rtorrent/watch
+#     refresh_time: 10
+#     download: ~/rtorrent/download_complete
+# Example for multiple watch directories:
+#   rtorrent_directory_watch:
+#     - ~/rtorrent/watch
+#     - path: ~/rtorrent/watch1
+#       refresh_time: 30
+#     - path: ~/rtorrent/watch2
+#       download: ~/rtorrent/download_custom
+# When not set, refresh_time={{ rtorrent_global_refresh_time }} and
+# download={{ rtorrent_directory_download }}
 rtorrent_directory_watch: ~/rtorrent/watch
+
+# Move completed torrents to the download directory as set in their watch
+# directory
+rtorrent_move_when_complete: false
 
 # ----- network settings -----
 rtorrent_port_range: 49164-49164
@@ -31,8 +52,9 @@ rtorrent_dns_cache_timeout: 60
 rtorrent_xmlrpc_size_limit: 524288
 
 # ----- schedule settings -----
-rtorrent_schedule_watch_directory: watch_directory,5,5,load_start={{ rtorrent_directory_watch }}/*.torrent
-rtorrent_schedule_untied_directory: untied_directory,5,5,stop_untied=
+# Set refresh time for untied_directory and watch directories
+rtorrent_global_refresh_time: 5
+rtorrent_schedule_untied_directory: "untied_directory,{{ rtorrent_global_refresh_time }},{{ rtorrent_global_refresh_time }},stop_untied="
 
 # ----- torrent settings -----
 rtorrent_check_hash: "no"
