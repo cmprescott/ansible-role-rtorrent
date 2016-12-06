@@ -118,10 +118,29 @@ protocol.pex.set = {{ rtorrent_peer_exchange }}
 {{ v }};
 {% endfor %}
 
-# Watch a directory for new torrents, and stop those that have been
-# deleted.
-schedule = {{ rtorrent_schedule_watch_directory }}
+# Watch one or multiple directories for new torrents, and stop those that have
+# been deleted.
+{% if rtorrent_directory_watch is string or rtorrent_directory is mapping %}
+    {% set rtorrent_directory_watch = [rtorrent_directory_watch,] %}
+{% endif %}
+{% for watch_dir in rtorrent_directory_watch %}
+    {% if watch_dir is mapping %}
+        {% set watch_dir_path = watch_dir.path %}
+    {% else %}
+        {% set watch_dir_path = watch_dir %}
+    {% endif %}
+    schedule = {{ watch_dir_path }},{{ watch_dir.refresh_time|default(rtorrent_global_refresh_time) }},{{ watch_dir.refresh_time|default(rtorrent_global_refresh_time) }},"load_start={{ watch_dir_path }}/*.torrent,d.set_custom1={{ watch_dir.download|default(rtorrent_directory_download) }}"
+{% endfor %}
 schedule = {{ rtorrent_schedule_untied_directory }}
+
+# Move torrents on completion
+{% if rtorrent_move_when_complete %}
+system.method.insert=checkdirs1,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+system.method.insert=movecheck1,simple,"and={checkdirs1=,d.get_complete=,d.get_custom1=}"
+system.method.insert=movedir1,simple,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1=;d.set_custom1=;d.stop=;d.start="
+system.method.set_key=event.download.hash_done,move_hashed1,"branch={$movecheck1=,movedir1=}"
+method.set_key=event.download.finished,move_complete,"branch={$movecheck1=,movedir1=}"
+{% endif %}
 
 # Whether to allocate disk space for a new torrent.
 system.file.allocate.set = {{ rtorrent_file_allocate }}
